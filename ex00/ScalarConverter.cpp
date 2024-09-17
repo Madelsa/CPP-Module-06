@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScalarConverter.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mahmoud <mahmoud@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mabdelsa <mabdelsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 19:20:11 by mahmoud           #+#    #+#             */
-/*   Updated: 2024/09/16 21:16:36 by mahmoud          ###   ########.fr       */
+/*   Updated: 2024/09/17 15:04:47 by mabdelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,10 @@ void ScalarConverter::convert(const std::string& input)
 {
     char* end;
 
-    // Attempt conversion to double
     double doubleValue = std::strtod(input.c_str(), &end);
 
-    // Check for double specific cases
     if (*end == '\0') 
     {
-        // Handle double-specific cases
         if (std::isnan(doubleValue)) 
         {
             std::cout << "char: impossible\n";
@@ -51,11 +48,14 @@ void ScalarConverter::convert(const std::string& input)
             return;
         }
 
-        // Handle conversion from double to other types
         std::cout << "char: ";
-        if (doubleValue < 32 || doubleValue > 126 || std::isnan(doubleValue) || std::isinf(doubleValue)) 
+        if (std::isnan(doubleValue) || std::isinf(doubleValue) || doubleValue < std::numeric_limits<char>::min() || doubleValue > std::numeric_limits<char>::max()) 
         {
             std::cout << "impossible\n";
+        } 
+        else if (!std::isprint(static_cast<char>(doubleValue))) 
+        {
+            std::cout << "Non displayable\n";
         } 
         else 
         {
@@ -75,9 +75,9 @@ void ScalarConverter::convert(const std::string& input)
         return;
     }
 
-    // Attempt conversion to float
     float floatValue = std::strtof(input.c_str(), &end);
-    if (*end == 'f' && *(end + 1) == '\0') {
+    if (*end == 'f' && *(end + 1) == '\0') 
+    {
         std::cout << "char: ";
         if (std::isnan(floatValue) || std::isinf(floatValue) || floatValue < 32 || floatValue > 126) 
         {
@@ -100,8 +100,7 @@ void ScalarConverter::convert(const std::string& input)
         std::cout << "double: " << std::fixed << std::setprecision(1) << static_cast<double>(floatValue) << "\n";
         return;
     }
-
-    // Attempt conversion to integer
+    
     long intValue = std::strtol(input.c_str(), &end, 10);
     if (*end == '\0' && intValue >= std::numeric_limits<int>::min() && intValue <= std::numeric_limits<int>::max()) 
     {
@@ -120,8 +119,6 @@ void ScalarConverter::convert(const std::string& input)
         std::cout << "double: " << std::fixed << std::setprecision(1) << static_cast<double>(intValue) << "\n";
         return;
     }
-
-    // If no valid conversion was possible
     std::cout << "char: impossible\n";
     std::cout << "int: impossible\n";
     std::cout << "float: impossible\n";
