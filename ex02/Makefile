@@ -6,11 +6,11 @@
 #    By: mabdelsa <mabdelsa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/24 12:26:30 by mabdelsa          #+#    #+#              #
-#    Updated: 2024/09/17 15:35:31 by mabdelsa         ###   ########.fr        #
+#    Updated: 2024/09/18 11:26:01 by mabdelsa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC	=	./main.cpp ./Serializer.cpp \
+SRC	=	./main.cpp ./Base.cpp \
 
 NAME = main
 RM = rm -f
