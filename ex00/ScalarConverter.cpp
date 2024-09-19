@@ -6,7 +6,7 @@
 /*   By: mabdelsa <mabdelsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 19:20:11 by mahmoud           #+#    #+#             */
-/*   Updated: 2024/09/17 15:04:47 by mabdelsa         ###   ########.fr       */
+/*   Updated: 2024/09/19 12:09:01 by mabdelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void ScalarConverter::convert(const std::string& input)
             std::cout << "'" << static_cast<char>(floatValue) << "'\n";
         }
         std::cout << "int: ";
-        if (floatValue < std::numeric_limits<int>::min() || floatValue > std::numeric_limits<int>::max()) 
+        if (floatValue < std::numeric_limits<int>::min() || floatValue > std::numeric_limits<int>::max() || std::isnan(floatValue)) 
         {
             std::cout << "impossible\n";
         } 

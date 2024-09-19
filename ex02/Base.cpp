@@ -6,7 +6,7 @@
 /*   By: mabdelsa <mabdelsa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 11:25:49 by mabdelsa          #+#    #+#             */
-/*   Updated: 2024/09/18 11:57:15 by mabdelsa         ###   ########.fr       */
+/*   Updated: 2024/09/19 12:19:34 by mabdelsa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,29 @@ void    identify(Base* p)
 
 void    identify(Base& p) 
 {
-    if ( dynamic_cast<A*>(&p))
+    try 
+    {
+        A& a = dynamic_cast<A&>(p);
+        (void)a;
         std::cout << "from_reference: A" << std::endl;
-    else if ( dynamic_cast<B*>( &p ))
+        return;
+    } catch (std::exception &e){}
+    
+    try 
+    {
+        B& b = dynamic_cast<B&>(p);
+        (void)b;
         std::cout << "from_reference: B" << std::endl;
-    else if ( dynamic_cast<C*>(&p)) 
+        return;
+    } catch (std::exception &e){}
+    
+    try 
+    {
+        C& c = dynamic_cast<C&>(p);
+        (void)c;
         std::cout << "from_reference: C" << std::endl;
-    else
-        std::cout << "from_reference: Unknown type" << std::endl;
-    return;
+        return;
+    } catch (std::exception &e){}
+
+    std::cout << "from_reference: Unknown type" << std::endl;
 }
